@@ -1,6 +1,6 @@
 const Koa = require("koa")
 
-const uploader = require("./lib")
+const { imageUploadMiddleware } = require("./lib")
 
 const config = require('./config')
 
@@ -10,10 +10,9 @@ const app = new Koa()
 
 const options = Object.assign({
   "url": "/api/upload",
-  "storeDir": "terminus",
+  "storeDir": "public",
   // "mimetypes": ['image/png','image/bmp'],
   // "provider": "local",
-  // "folder": "public",
   // "urlPath": "images"
   // "provider": "oss",
   // "accessKeyId": "xxxxx",
@@ -50,7 +49,7 @@ app.use(mount('/upload', async (ctx) => {
   `
 }))
 
-app.use(uploader(options))
+app.use(imageUploadMiddleware(options))
 
 app.listen(3000, () => {
   console.log('server is listen 3000')

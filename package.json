@@ -9,7 +9,8 @@
   "scripts": {
     "build": "babel lib --out-dir dist",
     "prepublish": "npm run build",
-    "test": "babel-node test.js"
+    "test-middleware": "babel-node testMiddleware.js",
+    "test-upload": "babel-node testUpload.js"
   },
   "repository": {
     "type": "git",

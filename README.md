@@ -4,18 +4,104 @@
 
 koa2 middle to upload file, 支持文件系统、 阿里 oss 、腾讯 cos 、华为 obs 、azure
 
-### Features
+### Install
 
-- support upload to dir
+```
+npm i github:corupta/file-upload
+```
+
+### Usage As Upload Function
+
+```javascript
+const { imageUpload } = require('koa2-file-upload');
+
+const options = require('./myConfig.js'); // see below for creating Options
+
+async function uploadMyTestFile() { // const uploadMyTestFile = async() => {
+  const testFile = new File(["foo"], "foo.txt", {
+    type: "text/plain",
+  });
+  const { result, error }  = await uploader(testFile);
+  if (error) {
+    console.log(`${error.status}: ${error.message}`);
+  } else {
+    console.log('successfully uploaded files: ', JSON.stringify(result));
+  }
+}
+
+async function uploadMyTestFiles() {
+  const testFiles = ['aaa', 'bbb', 'ccc', 'ddd', 'eee'].map((title) =>
+    new File(["I'm a test file :P", title], `${title}.txt`,
+      { type: "text/plain" }));
+}
+
+async function test() {
+  await uploadMyTestFile();
+  console.log('----------');
+  await uploadMyTestFiles();
+}
+
+test();
+```
+
+### Usage As Middleware
+
+```javascript
+const Koa = require('koa');
+const app = new Koa();
+
+const { imageUploadMiddleware } = require('koa2-file-upload');
+
+const options = require('./myConfig.js'); // see below for creating Options
+
+app.use(imageUploadMiddleware(options));
+```
+
+
+### Options
+
+#### General Options:
+```javascript
+options['upload'] = {
+  "storeDir": "uploadsFolder", // to upload to /uploadsFolder/...
+  "subDir": (file) => str || { date: true } || "customStr" || new Date() || null,
+  // default is { date: true }
+  /* dynamic subDir options (different subDir for each file)
+   * (file) => str: uploads to /storeDir/str/... (File is parsed File) 
+   * { date: true } (default) => uploads to /storeDir/yyyy/mm/dd/... (current date)
+   * { date: format } => uploads to /storeDir/{format}/... (current date)
+   * { random: true } => uploads to /storeDir/{randomHex}/...
+   */
+  /* static subDir options (same subDir for each file)
+   * str: uploads to /storeDir/str/...
+   * Date: uploads to /storeDir/yyyy/mm/dd... (given date object such as new Date())
+   * null: uploads to /storeDir/... (You must explicitly give null to omit sub directory)
+   */
+  "mimetypes": ['image/png','image/bmp'], // accept only those
+  // for a list of mimetypes http://www.freeformatter.com/mime-types-list.html
+  "filename": (file) => str || null
+  // (file) => str uploads to /storeDir/subDir/str (you must provide extension in function return)
+  // null (default)
+}
+```
+#### Route Path for Middleware:
+```javascript
+options['upload'] = {
+  "url": '/api/upload'
+}
+```
+
+#### Provider Specific Options:
+
+- support upload to local dir
 
 ```javascript
 options['upload'] = {
   "url": '/api/upload',
-  "storeDir": 'xxx',
   "provider": "local",
-  "mimetypes": ['image/png','image/bmp'], // 如果没有配置,将不进行类型检查 http://www.freeformatter.com/mime-types-list.html
-  "folder": "public",
-  "urlPath": "images"
+  "mimetypes": ['image/png','image/bmp'],
+  "storeDir": 'public/images',
+  "urlPath": "images" // base for urls it returns
 }
 ```
 
@@ -92,20 +178,6 @@ options["upload"] = {
 }
 ```
 
-
-### How to use
-
-```javascript
-
-npm i koa2-file-upload
-
-app.use(uploader(options))
-```
-
 ### Requirements
 
 - Node v6.0+
-
-## Workflow
-
-- `npm install`
