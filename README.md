@@ -62,7 +62,7 @@ app.use(imageUploadMiddleware(options));
 
 #### General Options:
 ```javascript
-options['upload'] = {
+options = {
   "storeDir": "uploadsFolder", // to upload to /uploadsFolder/...
   "subDir": (file) => str || { date: true } || "customStr" || new Date() || null,
   // default is { date: true }
@@ -86,7 +86,7 @@ options['upload'] = {
 ```
 #### Route Path for Middleware:
 ```javascript
-options['upload'] = {
+options = {
   "url": '/api/upload'
 }
 ```
@@ -96,7 +96,7 @@ options['upload'] = {
 - support upload to local dir
 
 ```javascript
-options['upload'] = {
+options = {
   "url": '/api/upload',
   "provider": "local",
   "mimetypes": ['image/png','image/bmp'],
