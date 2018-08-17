@@ -97,11 +97,16 @@ options = {
 
 ```javascript
 options = {
-  "url": '/api/upload',
+  "url": "/api/upload",
   "provider": "local",
-  "mimetypes": ['image/png','image/bmp'],
-  "storeDir": 'public/images',
-  "urlPath": "images" // base for urls it returns
+  "mimetypes": ["image/png","image/bmp"],
+  "storeDir": "images",
+  "folder": "uploads/media",
+  "urlPath": "static" // base for urls it returns
+  // file is put to ${folder}/${storeDir}/${subDir}/${file}
+  // result is returned as ${urlPath}/${storeDir}/${subDir}/${file}
+  // so in that example, image is uploaded to /uploads/media/images/abcdefg.png
+  // and the result is returned as { body: ['/static/images/abcdefg.png'] } 
 }
 ```
 

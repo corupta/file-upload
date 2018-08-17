@@ -3,7 +3,7 @@ const { imageUpload } = require("./lib")
 const config = require('./config')
 
 const options = Object.assign({
-  "storeDir": "terminus",
+  // "storeDir": "terminus",
   // "mimetypes": ['image/png','image/bmp'],
   // "provider": "local",
   // "folder": "public",
