@@ -44,6 +44,19 @@ async function test() {
 test();
 ```
 
+#### File Object
+```javascript
+// file or each file in files is in below format
+var file = {
+  file: binary, // binary image data
+  filename: string, // photo.png
+  mimeType: string, // image/png
+  path: string, // path of tmp file location
+  
+}
+
+```
+
 ### Usage As Middleware
 
 ```javascript

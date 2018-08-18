@@ -39,6 +39,7 @@ async function uploadMyTestFiles() {
   const testFiles = ['aaa', 'bbb', 'ccc', 'ddd', 'eee'].map((title) =>
     new File(["I'm a test file :P", title], `${title}.txt`,
       { type: "text/plain" }));
+  // todo File
 }
 
 async function test() {
