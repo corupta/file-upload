@@ -123,7 +123,7 @@ const imageUploadCreator = allOpts => {
 
       const storeDir = opts.storeDir ? `${opts.storeDir}/` : "";
 
-      let result = files.map(file, function (i) {
+      let result = files.map(function (file, i) {
         const fname = typeof filename === "function" ? filename(file) : `${uuid.v4()}${path.extname(file.filename)}`;
         const newSubDir = subDir(file);
         return {
