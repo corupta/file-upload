@@ -153,7 +153,7 @@ const imageUploadCreator = allOpts => {
         const { origName, path, filename } = file;
         return {
           origName,
-          url: `${path}${encodeURI(filename)}`,
+          url: store.getOne(`${path}${encodeURI(filename)}`),
           filename
         };
       });

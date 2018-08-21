@@ -37,6 +37,7 @@ module.exports = options => {
         return _ref.apply(this, arguments);
       };
     })(),
+    getOne: filename => `${targetProtocol ? `${targetProtocol}:` : ""}//${targetHost}/${filename}`,
     get: result => {
       Object.keys(result).map(filename => {
         return result[filename] = `${targetProtocol ? `${targetProtocol}:` : ""}//${targetHost}/${result[filename]}`;

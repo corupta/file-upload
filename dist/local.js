@@ -28,6 +28,7 @@ module.exports = options => {
         });
       });
     },
+    getOne: filename => `${path.join(`/${options.urlPath}`, filename)}`,
     get: result => {
       Object.keys(result).map(filename => {
         return result[filename] = `/${path.join(options.urlPath, result[filename])}`;
