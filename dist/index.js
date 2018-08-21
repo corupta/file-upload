@@ -91,7 +91,8 @@ const imageUploadCreator = allOpts => {
       if (typeof subDir === 'undefined') {
         subDir = { date: true }; // keep default to date as the original code. / send null for emtpy string
       }
-      if (typeof subDir === 'object') {
+      if (typeof subDir === 'object' && subDir) {
+        // can be null
         let format = "yyyy/mm/dd";
         if (subDir.date) {
           if (typeof subDir.date === 'string') {
@@ -106,15 +107,13 @@ const imageUploadCreator = allOpts => {
           subDir = function () {
             return uuid.v4();
           };
-        } else if (subDir) {
-          // can be null
-          return {
-            error: {
-              type: 501,
-              message: `Error: Invalid subDir option, ${subDir} => ${Object.keys(subDir)} (Allowed: { random: true }, Date object, { date: true }, string)`
-            }
-          };
         }
+        return {
+          error: {
+            type: 501,
+            message: `Error: Invalid subDir option, ${subDir} => ${Object.keys(subDir)} (Allowed: { random: true }, Date object, { date: true }, string)`
+          }
+        };
       }
       if (typeof subDir !== 'function') {
         subDir = function () {
@@ -124,7 +123,7 @@ const imageUploadCreator = allOpts => {
 
       const storeDir = opts.storeDir ? `${opts.storeDir}/` : "";
 
-      let result = files.map(function (file) {
+      let result = files.map(file, function (i) {
         const fname = typeof filename === "function" ? filename(file) : `${uuid.v4()}${path.extname(file.filename)}`;
         const newSubDir = subDir(file);
         return {
@@ -136,9 +135,9 @@ const imageUploadCreator = allOpts => {
 
       // Upload to OSS or folders
       try {
-        yield Promise.all(files.map(function (file) {
-          const { path, filename } = file;
-          return store.put(`${path ? `${path}/` : ''}${filename}`, file);
+        yield Promise.all(files.map(function (file, i) {
+          const { path, filename } = result[i];
+          return store.put(`${path || ''}${filename}`, file);
         }));
       } catch (err) {
         return {
@@ -153,7 +152,7 @@ const imageUploadCreator = allOpts => {
         const { origName, path, filename } = file;
         return {
           origName,
-          url: `${path}/${encodeURI(filename)}`,
+          url: `${path}${encodeURI(filename)}`,
           filename
         };
       });
