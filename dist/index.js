@@ -44,7 +44,7 @@ const imageUploadCreator = allOpts => {
       if (!Array.isArray(files)) {
         files = [files];
       }
-      files = map.files(function (file) {
+      files = files.map(function (file) {
         file.customParsed = customParsed;return file;
       });
 
