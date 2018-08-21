@@ -7,8 +7,9 @@ module.exports = options => {
   //    folder:  "/public/images",
   //    urlPath: "/images"
   // }
-  if (!options.storeDir) {
-    throw new Error("Missing option in options: [storeDir]");
+
+  if (!options.folder) {
+    throw new Error("Missing option in options: [folder]");
   }
 
   if (!options.urlPath) {

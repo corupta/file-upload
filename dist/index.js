@@ -1,4 +1,8 @@
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 const uuid = require("uuid");
 const path = require("path");
@@ -11,8 +15,9 @@ headers: { content-type: ***, content-disposition: ..., content-transfer-encodin
 headers: { content-type: multipart/*
  */
 
-const imageUploadCreator = opts => {
-
+const imageUploadCreator = allOpts => {
+  const { customParsed = true } = allOpts,
+        opts = _objectWithoutProperties(allOpts, ["customParsed"]);
   let store;
   try {
     store = require(`./${opts.provider}`)(opts);
@@ -39,6 +44,9 @@ const imageUploadCreator = opts => {
       if (!Array.isArray(files)) {
         files = [files];
       }
+      files = map.files(function (file) {
+        file.customParsed = customParsed;return file;
+      });
 
       // Check if any file is not valid mimetype
       if (mimetypes) {
@@ -116,12 +124,11 @@ const imageUploadCreator = opts => {
 
       const storeDir = opts.storeDir ? `${opts.storeDir}/` : "";
 
-      let result = {};
-
-      files.forEach(function (file) {
+      let result = files.map(function (file) {
         const fname = typeof filename === "function" ? filename(file) : `${uuid.v4()}${path.extname(file.filename)}`;
         const newSubDir = subDir(file);
-        result[file.filename] = {
+        return {
+          origName: file.filename,
           path: `${storeDir}${newSubDir ? `${newSubDir}/` : ''}`,
           filename: fname
         };
@@ -130,7 +137,7 @@ const imageUploadCreator = opts => {
       // Upload to OSS or folders
       try {
         yield Promise.all(files.map(function (file) {
-          const { path, filename } = result[file.filename];
+          const { path, filename } = file;
           return store.put(`${path ? `${path}/` : ''}${filename}`, file);
         }));
       } catch (err) {
@@ -142,31 +149,23 @@ const imageUploadCreator = opts => {
         };
       }
 
-      Object.keys(result).forEach(function (k) {
-        const { path, filename } = result[k];
-        result[k] = {
+      result = result.map(function (file) {
+        const { origName, path, filename } = file;
+        return {
+          origName,
           url: `${path}/${encodeURI(filename)}`,
           filename
         };
       });
 
+      console.log(result);
+
       return {
         results: result,
-        body: store.get(result.map(function ({ url }) {
-          return url;
-        }))
+        body: store.get(result.reduce(function (acc, { url, filename }) {
+          return _extends({}, acc, { url: filename });
+        }, {}))
       };
-
-      // Return result
-      ctx.status = 200;
-      // Support < IE 10 browser
-      ctx.res.setHeader("Content-Type", "text/html;charset=UTF-8");
-      Object.keys(result).forEach(function (k) {
-        const { path, filename } = result[k];
-        result[k] = `${path}/${encodeURI(filename)}`;
-      });
-      ctx.body = JSON.stringify(store.get(result));
-      return;
     });
 
     return function (_x) {
@@ -176,7 +175,7 @@ const imageUploadCreator = opts => {
 };
 
 const imageUploadMiddlewareFunction = opts => {
-  const imageUploadFunction = imageUploadCreator(opts);
+  const imageUploadFunction = imageUploadCreator(_extends({}, opts, { customParsed: false }));
   return (() => {
     var _ref2 = _asyncToGenerator(function* (ctx, next) {
       if ("POST" !== ctx.method && !ctx.request.is("multipart/*")) {
