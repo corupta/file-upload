@@ -3,12 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f95e2192-d130-4615-9db4-025d7e1d818b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/lib/aws.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/aws.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/azure.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/azure.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/cos.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/cos.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/local.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/local.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/obs.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/obs.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/oss.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/oss.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -44,7 +38,7 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="babelrc" value="3" />
-          <entry key="js" value="817" />
+          <entry key="js" value="825" />
           <entry key="json" value="3" />
           <entry key="md" value="281" />
         </counts>
@@ -52,7 +46,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JSON" value="6" />
-          <entry key="JavaScript" value="823" />
+          <entry key="JavaScript" value="831" />
           <entry key="Markdown" value="275" />
         </counts>
       </usages-collector>
@@ -74,11 +68,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/aws.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="450">
-              <caret line="30" column="60" selection-start-line="30" selection-start-column="60" selection-end-line="30" selection-end-column="60" />
+              <caret line="30" column="21" selection-start-line="30" selection-start-column="21" selection-end-line="30" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -119,15 +113,6 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/lib/oss.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="31" column="90" selection-start-line="31" selection-start-column="90" selection-end-line="31" selection-end-column="90" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.babelrc">
           <provider selected="true" editor-type-id="text-editor">
@@ -162,13 +147,13 @@
         <option value="$PROJECT_DIR$/lib/util.js" />
         <option value="$PROJECT_DIR$/.babelrc" />
         <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/lib/aws.js" />
         <option value="$PROJECT_DIR$/lib/index.js" />
         <option value="$PROJECT_DIR$/lib/azure.js" />
         <option value="$PROJECT_DIR$/lib/cos.js" />
         <option value="$PROJECT_DIR$/lib/local.js" />
         <option value="$PROJECT_DIR$/lib/obs.js" />
         <option value="$PROJECT_DIR$/lib/oss.js" />
+        <option value="$PROJECT_DIR$/lib/aws.js" />
       </list>
     </option>
   </component>
@@ -251,18 +236,18 @@
       <updated>1534593107333</updated>
       <workItem from="1534593108527" duration="1146000" />
       <workItem from="1534845651030" duration="339000" />
-      <workItem from="1534846433215" duration="5768000" />
+      <workItem from="1534846433215" duration="5847000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7253000" />
+    <option name="totallyTimeSpent" value="7332000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2550586" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2550586" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -277,7 +262,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.26633662" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.26633662" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -345,13 +330,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/aws.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="30" column="60" selection-start-line="30" selection-start-column="60" selection-end-line="30" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/azure.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
@@ -384,6 +362,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="465">
           <caret line="31" column="90" selection-start-line="31" selection-start-column="90" selection-end-line="31" selection-end-column="90" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/aws.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="30" column="21" selection-start-line="30" selection-start-column="21" selection-end-line="30" selection-end-column="21" />
         </state>
       </provider>
     </entry>

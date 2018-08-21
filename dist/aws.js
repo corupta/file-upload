@@ -33,7 +33,7 @@ module.exports = options => {
         return _ref.apply(this, arguments);
       };
     })(),
-    getOne: result => `${endpoint}/${bucket}/${filename}`,
+    getOne: filename => `${endpoint}/${bucket}/${filename}`,
     get: result => {
       Object.keys(result).map(filename => {
         return result[filename] = `${endpoint}/${bucket}/${result[filename]}`;
