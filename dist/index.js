@@ -116,8 +116,9 @@ const imageUploadCreator = allOpts => {
         };
       }
       if (typeof subDir !== 'function') {
+        const res = `${subDir || ''}`;
         subDir = function () {
-          return `${subDir || ""}`;
+          return res;
         };
       }
 
