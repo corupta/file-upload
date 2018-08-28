@@ -1,6 +1,6 @@
 # koa2-file-uploader
 
-[![](https://img.shields.io/npm/v/koa2-file-upload.svg?style=flat)](https://www.npmjs.com/package/koa2-file-uploader)
+[![](https://img.shields.io/npm/v/koa2-file-uploader.svg?style=flat)](https://www.npmjs.com/package/koa2-file-uploader)
 
 koa2 middleware/function to upload file, supports local, oss, cos, obs, azure, aws stores.
 
