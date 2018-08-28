@@ -1,6 +1,6 @@
 const Koa = require("koa")
 
-const { imageUploadMiddleware } = require("./lib")
+const { imageUploadMiddleware } = require("../lib/index")
 
 const config = require('./config')
 

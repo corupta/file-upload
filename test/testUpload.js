@@ -1,4 +1,4 @@
-const { imageUpload } = require("./lib")
+const { imageUpload } = require("../lib/index")
 
 const config = require('./config')
 

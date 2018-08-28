@@ -1,19 +1,24 @@
-# koa2-file-upload
+# koa2-file-uploader
 
-[![](https://img.shields.io/npm/v/koa2-file-upload.svg?style=flat)](https://www.npmjs.com/package/koa2-file-upload)
+[![](https://img.shields.io/npm/v/koa2-file-upload.svg?style=flat)](https://www.npmjs.com/package/koa2-file-uploader)
 
-koa2 middle to upload file, 支持文件系统、 阿里 oss 、腾讯 cos 、华为 obs 、azure
+koa2 middleware/function to upload file, supports local, oss, cos, obs, azure, aws stores.
+
+This package is a fork from [dzy321/file-upload](https://github.com/dzy321/file-upload) allowing to use the package to upload files with/without using the package as a middleware.
+*(Special thanks to [dzy321](https://github.com/dzy321), for creating an all-in-one package to upload to different stores)*
+ 
+With my version, you can use this package for uploading your custom-parsed files & files your server downloads from other websites, etc... (it lets you give a file) 
 
 ### Install
 
 ```
-npm i github:corupta/file-upload
+npm i koa2-file-uploader
 ```
 
 ### Usage As Upload Function
 
 ```javascript
-const { imageUpload } = require('koa2-file-upload');
+const { imageUpload } = require('koa2-file-uploader');
 
 const options = require('./myConfig.js'); // see below for creating Options
 
@@ -51,7 +56,7 @@ var file = {
   file: binary, // binary image data
   filename: string, // photo.png
   mimeType: string, // image/png
-  path: string, // path of tmp file location
+  path: string, // path of tmp file location  
   
 }
 
@@ -63,7 +68,7 @@ var file = {
 const Koa = require('koa');
 const app = new Koa();
 
-const { imageUploadMiddleware } = require('koa2-file-upload');
+const { imageUploadMiddleware } = require('koa2-file-uploader');
 
 const options = require('./myConfig.js'); // see below for creating Options
 

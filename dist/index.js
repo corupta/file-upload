@@ -15,6 +15,9 @@ headers: { content-type: ***, content-disposition: ..., content-transfer-encodin
 headers: { content-type: multipart/*
  */
 
+const httpSlashFix = str => str.replace(/(?!https?):\/+(?=[^/])/, '://');
+// replace http:/xxx and https://///xxx, etc. with http://xxx ... https://xxx
+
 const imageUploadCreator = allOpts => {
   const { customParsed = true } = allOpts,
         opts = _objectWithoutProperties(allOpts, ["customParsed"]);
@@ -153,7 +156,7 @@ const imageUploadCreator = allOpts => {
         const { origName, path, filename } = file;
         return {
           origName,
-          url: store.getOne(`${path}${encodeURI(filename)}`),
+          url: httpSlashFix(store.getOne(`${path}${encodeURI(filename)}`)),
           filename
         };
       });
@@ -163,7 +166,7 @@ const imageUploadCreator = allOpts => {
       return {
         results: result,
         body: store.get(result.reduce(function (acc, { url, filename }) {
-          return _extends({}, acc, { url: filename });
+          return _extends({}, acc, { url: httpSlashFix(filename) });
         }, {}))
       };
     });

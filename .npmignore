@@ -1,0 +1,6 @@
+lib/
+
+test/
+public/
+
+.babelrc
