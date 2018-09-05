@@ -1,6 +1,6 @@
 {
   "name": "koa2-file-uploader",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "koa middleware use upload file",
   "main": "dist/index.js",
   "files": [
